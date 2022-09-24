@@ -49,7 +49,7 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export default function AuthenticationImage() {
+export default function Login() {
 
     const { classes } = useStyles();
 

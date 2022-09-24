@@ -3,6 +3,8 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 import { useNavigate } from "react-router-dom";
 import { Route, Routes, Link, Navigate } from "react-router-dom";
+import { FileInput } from '@mantine/core';
+// import user from "../../../models/user";
 import {
     Paper,
     createStyles,
@@ -13,6 +15,7 @@ import {
     Text,
     Anchor,
 } from '@mantine/core';
+
 
 const useStyles = createStyles((theme) => ({
     wrapper: {
@@ -49,17 +52,38 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export default function SignUp() {
+
+export default function SignUp(props) {
 
     const { classes } = useStyles();
 
-    function handleSubmit(e) {
+    const navigate = useNavigate();
+    
+    const [error, setError] = useState('');
+    const [state, setState] = useState({
+      username: '',
+      email: '',
+      password: '',
+      passwordConf: '',
+    })
+
+    async function handleSubmit(e) {
         e.preventDefault();
-        console.log('Test');
+        try {
+          await userService.signup({...state});
+          props.handleSignUpOrLogin();
+          navigate('/')
+      } catch(err) {
+        console.log(err.message);
+        setError(err.message);
+      }
     }
 
     function handleChange(e) {
-        console.log('Test');
+        setState({
+          ...state,
+          [e.target.name]: e.target.value
+        })
     }
 
     return (
@@ -72,15 +96,15 @@ export default function SignUp() {
             Create An Account
         </Title>
 
-            <TextInput name="username" placeholder="hello@gmail.com" value="" onChange={handleChange} required label="Username" size="md" />
+            <TextInput name="username" placeholder="hello@gmail.com" value={state.username} onChange={handleChange} required label="Username" size="md" />
 
             <br />
 
-            <TextInput type="email" name="email" placeholder="hello@gmail.com" value="" onChange={handleChange} required label="Email Address"  size="md" />
+            <TextInput type="email" name="email" placeholder="hello@gmail.com" value={state.email} onChange={handleChange} required label="Email Address"  size="md" />
 
-            <PasswordInput type="password" name="password" placeholder="Password" value="" onChange={handleChange} required label="Password" mt="md" size="md" />
+            <PasswordInput type="password" name="password" placeholder="Password" value={state.password} onChange={handleChange} required label="Password" mt="md" size="md" />
 
-            <PasswordInput type="password" name="passwordConf" placeholder="Confirm Password" value="" onChange={handleChange} required label="Password Confirmation" mt="md" size="md" />
+            <PasswordInput type="password" name="passwordConf" placeholder="Confirm Password" value={state.passwordConf} onChange={handleChange} required label="Password Confirmation" mt="md" size="md" />
 
             <Button type="submit" fullWidth mt="xl" size="md">
             Sign Up
@@ -88,7 +112,7 @@ export default function SignUp() {
 
             <Text align="center" mt="md">
             Already have an account?{' '}
-            <Link to="/">Log In</Link>
+            <Link to="/login">Log In</Link>
             </Text>
 
         </Paper>
