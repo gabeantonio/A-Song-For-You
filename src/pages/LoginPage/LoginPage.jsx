@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./LoginPage.css";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
-import { Route, Routes, Link, Navigate } from "react-router-dom";
+import { Route, Routes, Link, Navigate, useNavigate } from "react-router-dom";
 import {
     Paper,
     createStyles,
@@ -49,17 +49,37 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export default function Login() {
+export default function LoginPage(props) {
 
     const { classes } = useStyles();
 
-    function handleSubmit(e) {
+    const [error, setError] = useState("");
+    const [state, setState] = useState({
+      email: "",
+      password: "",
+    })
+
+
+    const navigate = useNavigate();
+
+    async function handleSubmit(e) {
         e.preventDefault();
-        console.log('Test');
+        
+        try {
+          await userService.login(state);
+          props.handleSignUpOrLogin();
+          navigate("/");
+        } catch(err) {
+          console.log(err.message);
+          setError(err.message);
+        }
     }
 
     function handleChange(e) {
-        console.log('Test');
+        setState({
+          ...state,
+          [e.target.name]: e.target.value
+        });
     }
 
     return (
@@ -74,9 +94,9 @@ export default function Login() {
             Welcome to your App!
         </Title>
 
-            <TextInput type="email" name="email" placeholder="hello@gmail.com" value="" onChange={handleChange} label="Email Address"  size="md" />
+            <TextInput type="email" name="email" placeholder="hello@gmail.com" value={state.email} onChange={handleChange} label="Email Address"  size="md" />
 
-            <PasswordInput type="password" name="password" placeholder="Your password" value="" onChange={handleChange} label="Password" mt="md" size="md" />
+            <PasswordInput type="password" name="password" placeholder="Your password" value={state.password} onChange={handleChange} label="Password" mt="md" size="md" />
 
             <Button type="submit" fullWidth mt="xl" size="md">
             Login

@@ -53,7 +53,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 
-export default function SignUp(props) {
+export default function SignUpPage(props) {
 
     const { classes } = useStyles();
 
@@ -96,7 +96,7 @@ export default function SignUp(props) {
             Create An Account
         </Title>
 
-            <TextInput name="username" placeholder="hello@gmail.com" value={state.username} onChange={handleChange} required label="Username" size="md" />
+            <TextInput name="username" placeholder="Username" value={state.username} onChange={handleChange} required label="Username" size="md" />
 
             <br />
 
