@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { MantineProvider, Text } from '@mantine/core';
 import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
@@ -21,6 +22,7 @@ function App() {
 
   if (user) {
     return (
+      <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
       <Routes>
         <Route path="/" element={<h1>This is Home Page!</h1>} />
         <Route
@@ -32,10 +34,12 @@ function App() {
           element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
         />
       </Routes>
+      </MantineProvider>
     );
   }
 
   return (
+    <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
     <Routes>
       <Route
         path="/login"
@@ -47,6 +51,7 @@ function App() {
       />
       <Route path="/*" element={<Navigate to="/login" />} />
     </Routes>
+    </MantineProvider>
   );
 }
 

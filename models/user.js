@@ -24,8 +24,8 @@ userSchema.set('toJSON', {
 // this is if you populate the user
 userSchema.set('toObject', {
   transform: (doc, ret, opt) => {
-   delete ret.password;
-   return ret;
+    delete ret.password;
+    return ret;
   }
 });
 
