@@ -4,7 +4,7 @@ import { MantineProvider, Text } from '@mantine/core';
 import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
-import Timeline from "../../components/Timeline";
+import Timeline from "../Timeline/Timeline";
 import userService from "../../utils/userService";
 
 function App() {
