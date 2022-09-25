@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { createStyles, Header, Menu, Group, Center, Burger, Container } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { IconChevronDown } from '@tabler/icons';
+import { createStyles, Header, Container } from '@mantine/core';
+
 
 
 const useStyles = createStyles((theme) => ({
@@ -29,11 +28,7 @@ export default function HeaderMenuColored() {
     return (
         <Header height={70} className={classes.header}>
         <Container>
-            <div className={classes.inner}>
-            <Group spacing={5} className={classes.links}>
-            
-            </Group>
-            </div>
+            This is the Header!
         </Container>
     </Header>
     );
