@@ -45,6 +45,7 @@ function handleChange(e) {
             name="playlistName"
             value={state.playlistName}
             onChange={handleChange}
+            required
             withAsterisk
             placeholder="Playlist Title"
         />
@@ -58,6 +59,7 @@ function handleChange(e) {
             type="file"
             onChange={handleFileInput}
             label="Playlist Cover"
+            required
             withAsterisk
         />
 
@@ -71,6 +73,7 @@ function handleChange(e) {
             onChange={handleChange}
             label="Your Playlist's Tracklist:"
             autosize
+            required
             withAsterisk
         />
 

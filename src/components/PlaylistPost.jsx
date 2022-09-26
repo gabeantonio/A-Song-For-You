@@ -1,6 +1,5 @@
-import React from 'react';
-
-import { createStyles, Paper, Text, Title, Button, BackgroundImage } from '@mantine/core';
+import React, {useState} from 'react';
+import { createStyles, Paper, Text, Title, Button, Modal, Group } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
 card: {
@@ -33,8 +32,11 @@ category: {
 
 
 
+
 export default function ArticleCardImage({post}) {
+    
     const { classes } = useStyles();
+    const [opened, setOpened] = useState(false);
 
     return (
     <Paper
@@ -47,16 +49,26 @@ export default function ArticleCardImage({post}) {
         
         <div>
         <Text className={classes.category} size="xs">
-            Testing
+            {post.user.username}
         </Text>
         <Title order={3} className={classes.title}>
-            Card
+            {post.playlistName}
         </Title>
         </div>
-        <Button variant="white" color="dark">
-        Read article
-        </Button>
 
+        <Modal
+        opened={opened}
+        centered
+        onClose={() => setOpened(false)}
+        title={post.playlistName} 
+        overflow="inside"
+        >
+        {post.tracklist}
+        </Modal>
+
+        <Group>
+        <Button onClick={() => setOpened(true)}>View Tracklist</Button>
+        </Group>
     </Paper>
 );
 }
