@@ -1,9 +1,9 @@
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
-const S3 = require("aws-sdk/clients/s3");
-const s3 = new S3();
-const { v4: uuidv4 } = require("uuid");
-const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
+// const S3 = require("aws-sdk/clients/s3");
+// const s3 = new S3();
+// const { v4: uuidv4 } = require("uuid");
+// const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 const SECRET = process.env.SECRET;
 
 module.exports = {

@@ -15,3 +15,19 @@ export function create(post) {
         throw new Error('Check your server terminal for error.')
     }) 
 }
+
+export function getAll() {
+    return fetch(BASE_URL, {
+        headers: {
+        'Authorization': 'Bearer ' + tokenService.getToken() 
+        }
+    })
+    .then((res) => {
+        if(res.ok) return res.json();
+
+        return res.json().then(response => {
+        console.log(response)
+        throw new Error(response.err)
+        })
+    });
+}

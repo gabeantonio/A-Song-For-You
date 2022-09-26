@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+// import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 import { useNavigate } from "react-router-dom";
-import { Route, Routes, Link, Navigate } from "react-router-dom";
-import { FileInput } from '@mantine/core';
-// import user from "../../../models/user";
+import { Link } from "react-router-dom";
+
 import {
     Paper,
     createStyles,
@@ -13,7 +12,6 @@ import {
     Button,
     Title,
     Text,
-    Anchor,
 } from '@mantine/core';
 
 
@@ -52,6 +50,9 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
+function isPasswordMatch(password, passwordConf) {
+  return password === passwordConf;
+}
 
 export default function SignUpPage(props) {
 
@@ -59,7 +60,11 @@ export default function SignUpPage(props) {
 
     const navigate = useNavigate();
     
-    const [error, setError] = useState('');
+    const [error, setError] = useState({
+      message: '',
+      passwordError: false
+    });
+
     const [state, setState] = useState({
       username: '',
       email: '',
@@ -69,6 +74,8 @@ export default function SignUpPage(props) {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        if(!isPasswordMatch(state.password, state.passwordConf)) return setError({message: 'Your passwords must match!', passwordError: true});
+        setError({message: '', passwordError: false});
         try {
           await userService.signup({...state});
           props.handleSignUpOrLogin();
@@ -102,9 +109,9 @@ export default function SignUpPage(props) {
 
             <TextInput type="email" name="email" placeholder="hello@gmail.com" value={state.email} onChange={handleChange} required label="Email Address"  size="md" />
 
-            <PasswordInput type="password" name="password" placeholder="Password" value={state.password} onChange={handleChange} required label="Password" mt="md" size="md" />
+            <PasswordInput type="password" name="password" placeholder="Password" value={state.password} onChange={handleChange} required label="Password" mt="md" size="md" error={error.message} />
 
-            <PasswordInput type="password" name="passwordConf" placeholder="Confirm Password" value={state.passwordConf} onChange={handleChange} required label="Password Confirmation" mt="md" size="md" />
+            <PasswordInput type="password" name="passwordConf" placeholder="Confirm Password" value={state.passwordConf} onChange={handleChange} required label="Password Confirmation" mt="md" size="md" error={error.message} />
 
             <Button type="submit" fullWidth mt="xl" size="md">
             Sign Up

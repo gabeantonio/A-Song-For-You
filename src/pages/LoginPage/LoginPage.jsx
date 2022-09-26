@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
-import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+// import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
-import { Route, Routes, Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
     Paper,
     createStyles,
@@ -11,7 +11,6 @@ import {
     Button,
     Title,
     Text,
-    Anchor,
 } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
@@ -54,6 +53,7 @@ export default function LoginPage(props) {
     const { classes } = useStyles();
 
     const [error, setError] = useState("");
+    
     const [state, setState] = useState({
       email: "",
       password: "",

@@ -25,7 +25,7 @@ function create(req, res) {
                 tracklist: req.body.tracklist,
                 photoUrl: data.Location
             })
-            res.status(201).json({post})
+            res.status(201).json({data: post})
         } catch(err) {
             res.status(400).json(err);
         }
@@ -34,9 +34,6 @@ function create(req, res) {
 
 async function index(req, res) {
     try {
-    // this populates the user when you find the posts
-    // so you'll have access to the users information
-    // when you fetch teh posts
         const posts = await Playlist.find({}).populate("user").exec();
         res.status(200).json({ data: posts });
     } catch (err) {

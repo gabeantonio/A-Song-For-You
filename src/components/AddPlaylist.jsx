@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Input, FileInput, Textarea, TextInput, Button } from '@mantine/core';
+import { FileInput, Textarea, TextInput, Button } from '@mantine/core';
 
 export default function AddPlaylist({handleAddPost}) {
 
