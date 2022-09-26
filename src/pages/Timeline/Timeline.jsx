@@ -43,7 +43,7 @@ export default function Timeline() {
         <SimpleGrid cols={1} verticalSpacing="50">
             <div><Header /></div>
             <div style={{ margin: "0 35% 0 35%", maxWidth: 700 }}><AddPlaylist handleAddPost={handleAddPost} /></div>
-            <div style={{ margin: "0 35% 5% 35%", maxWidth: 700 }}><PlaylistFeed posts={posts}/></div>
+            <div style={{ margin: "0 35% 5% 35%", maxWidth: 700 }}><PlaylistFeed posts={posts} /></div>
         </SimpleGrid>
         </>
         
