@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Playlist = require('../models/playlist');
 const jwt = require('jsonwebtoken');
 // const S3 = require("aws-sdk/clients/s3");
 // const s3 = new S3();
@@ -8,8 +9,27 @@ const SECRET = process.env.SECRET;
 
 module.exports = {
   signup,
-  login
+  login,
+  profile
 };
+
+async function profile(req, res) {
+  try {
+
+    const user = await User.findOne({username: req.params.username});
+    if (!user) return res.status(404).json({error: 'User not found.'});
+    const posts = await Playlist.find({user: user._id}).populate('user').exec();
+    res.status(200).json({data:{
+      user: user,
+      posts: posts
+    }});
+
+  } catch(err) {
+    console.log(err.message, '<---- ERROR IN PROFILE CONTROLLER');
+    res.status(400).json({error: 'Something went wrong in the Profile Controller!'});
+  }
+}
+
 
 async function signup(req, res) {
   console.log(req.body, " req.body in signup");
