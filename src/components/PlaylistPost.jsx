@@ -11,7 +11,7 @@ card: {
     alignItems: 'flex-start',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    margin: 30
+    margin: '40px 0 0 0'
 },
 
 title: {
