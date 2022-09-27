@@ -3,11 +3,12 @@ import Header from '../../components/Header';
 import ProfileFeed from '../../components/ProfileFeed';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 import userService from '../../utils/userService';
+import * as likesAPI from '../../utils/likesApi';
 import { SimpleGrid } from '@mantine/core';
 import { useParams } from 'react-router-dom';
 import { DEFAULT_THEME, LoadingOverlay } from '@mantine/core';
 
-export default function ProfilePage() {
+export default function ProfilePage({loggedInUser}) {
 
     const [posts, setPosts] = useState([]);
     const [profileUser, setProfileUser] = useState({});
@@ -16,6 +17,23 @@ export default function ProfilePage() {
 
     const { username } = useParams();
 
+    async function addLike(postId) {
+        try {
+            const response = await likesAPI.create(postId);
+            console.log(response, '<--- THE RESPONSE FROM ADD LIKE!')
+        } catch(err) {
+            console.log(err, '<--- THE ERROR FROM THE SERVER!')
+        }
+    }
+
+    async function removeLike(likeId) {
+        try {
+            const response = await likesAPI.removeLike(likeId);
+            console.log(response, '<--- RESPONSE FROM REMOVE LIKE!')
+        } catch(err) {
+            console.log(err);
+        }
+    }
 
 
     useEffect(() => {
@@ -86,7 +104,7 @@ export default function ProfilePage() {
         <>
         <SimpleGrid cols={1} spacing="50" verticalSpacing="50">
             <div><Header /></div>
-            <div style={{ margin: "0 0 5% 25%", maxWidth: 700 }}><ProfileFeed posts={posts} /></div>
+            <div style={{ margin: "0 0 5% 25%", maxWidth: 700 }}><ProfileFeed loggedInUser={loggedInUser} posts={posts} addLike={addLike} removeLike={removeLike} /></div>
         </SimpleGrid>
         </>
     )

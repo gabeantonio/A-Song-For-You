@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { createStyles, Paper, Text, Title, Button, Modal, Group } from '@mantine/core';
+import { createStyles, Paper, Text, Title, Button, Modal, Group, ActionIcon, Indicator } from '@mantine/core';
+import { IconHeart } from '@tabler/icons';
 
 const useStyles = createStyles((theme) => ({
 card: {
@@ -33,10 +34,15 @@ category: {
 
 
 
-export default function ProfilePosts({post}) {
+export default function ProfilePosts({post, loggedInUser, addLike, removeLike}) {
     
     const { classes } = useStyles();
     const [opened, setOpened] = useState(false);
+    const likeCount = post.likes.length
+    const likedIndex = post.likes.findIndex(like => like.username === loggedInUser.username)
+    const likeColor = likedIndex > -1 ? 'red' : 'grey'
+    const clickHandler = likedIndex > -1 ? () => removeLike(post.likes[likedIndex])._id : () => addLike(post._id)
+
 
     return (
     <Paper
@@ -67,9 +73,19 @@ export default function ProfilePosts({post}) {
         {post.tracklist}
         </Modal>
 
+        <div style={{margin: '95% 0 0 0' }}>
         <Group>
         <Button onClick={() => setOpened(true)}>View Tracklist</Button>
         </Group>
+        </div>
+
+        <div style={{margin: '-15% 0 0 90%'}}>
+        <Indicator label={likeCount} overflowCount={10} inline size={15} >
+        <ActionIcon>
+            <IconHeart size={100} color={likeColor} stroke={1.5} onClick={clickHandler} />
+        </ActionIcon>
+        </Indicator>
+        </div>
     </Paper>
 );
 }

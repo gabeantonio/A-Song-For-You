@@ -3,15 +3,39 @@ import Header from '../../components/Header';
 import AddPlaylist from '../../components/AddPlaylist';
 import PlaylistFeed from '../../components/PlaylistFeed';
 import * as postsAPI from '../../utils/postApi'; 
+import * as likesAPI from '../../utils/likesApi';
 import { SimpleGrid } from '@mantine/core';
 import { DEFAULT_THEME, LoadingOverlay } from '@mantine/core';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
-export default function Timeline() {
+export default function Timeline({loggedInUser}) {
 
     const [error, setError] = useState('');
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    async function addLike(postId) {
+        try {
+            const response = await likesAPI.create(postId);
+            console.log(response, '<--- THE RESPONSE FROM ADD LIKE!');
+            getPosts();
+        } catch(err) {
+            console.log(err, '<--- THE ERROR FROM THE SERVER!')
+        }
+    }
+
+    async function removeLike(likeId) {
+        try {
+            const response = await likesAPI.removeLike(likeId);
+            console.log(response, 'REMOVED LIKE');
+            getPosts();
+        } catch (err) {
+            console.log(err);
+            setError("Error in removing like!");
+        }
+        }
+
+
 
     async function handleAddPost(post) {
     
@@ -27,18 +51,20 @@ export default function Timeline() {
         } 
     }
 
-    useEffect(() => {
-        async function getPosts() {
-            try {
-                const response = await postsAPI.getAll();
-                console.log(response, '<--- RESPONSE DATA');
-                setPosts([...response.data]);
-                setLoading(false);
-            } catch(err) {
-                console.log(err.message, "<--- ERROR in USE EFFECT");
-                setLoading(false);
-            }
+    async function getPosts() {
+        try {
+            const response = await postsAPI.getAll();
+            console.log(response, '<--- RESPONSE DATA');
+            setPosts([...response.data]);
+            setLoading(false);
+        } catch(err) {
+            console.log(err.message, "<--- ERROR in USE EFFECT");
+            setLoading(false);
         }
+    }
+    
+    useEffect(() => {
+        
         getPosts()
     }, [])
 
@@ -92,7 +118,7 @@ export default function Timeline() {
         <SimpleGrid cols={1} verticalSpacing="50">
             <div><Header /></div>
             <div style={{ margin: "0 35% 0 35%", maxWidth: 700 }}><AddPlaylist handleAddPost={handleAddPost} /></div>
-            <div style={{ margin: "0 35% 5% 35%", maxWidth: 700 }}><PlaylistFeed posts={posts} /></div>
+            <div style={{ margin: "0 35% 5% 35%", maxWidth: 700 }}><PlaylistFeed loggedInUser={loggedInUser} posts={posts} addLike={addLike} removeLike={removeLike} /></div>
         </SimpleGrid>
         </>
         

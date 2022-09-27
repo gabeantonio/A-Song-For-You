@@ -23,7 +23,7 @@ function App() {
     return (
       <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
       <Routes>
-        <Route path="/" element={<Timeline />} />
+        <Route path="/" element={<Timeline loggedInUser={user} />} />
         <Route
           path="/login"
           element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
@@ -34,7 +34,7 @@ function App() {
         />
         <Route 
           path="/:username"
-          element={<ProfilePage /> }
+          element={<ProfilePage loggedInUser={user} /> }
         />
       </Routes>
       </MantineProvider>

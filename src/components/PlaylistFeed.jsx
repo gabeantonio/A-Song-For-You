@@ -1,11 +1,11 @@
 import React from 'react';
 import PlaylistPost from './PlaylistPost';
 
-export default function PlaylistFeed({posts}) {
+export default function PlaylistFeed({posts, addLike, removeLike, loggedInUser}) {
     return(
         <>
         {posts.map((post) => {
-            return <PlaylistPost  post={post} key={post._id} />
+            return <PlaylistPost loggedInUser={loggedInUser} post={post} key={post._id} addLike={addLike} removeLike={removeLike} />
         })}
         
         </>
