@@ -63,10 +63,10 @@ export default function Timeline({loggedInUser}) {
         }
     }
     
-    useEffect(() => {
+        useEffect(() => {
         
-        getPosts()
-    }, [])
+            getPosts()
+        }, [])
 
     if (error) {
         return (
@@ -115,11 +115,11 @@ export default function Timeline({loggedInUser}) {
     return(
 
         <>
-        <SimpleGrid cols={1} verticalSpacing="50">
-            <div><Header /></div>
-            <div style={{ margin: "0 35% 0 35%", maxWidth: 700 }}><AddPlaylist handleAddPost={handleAddPost} /></div>
-            <div style={{ margin: "0 35% 5% 35%", maxWidth: 700 }}><PlaylistFeed loggedInUser={loggedInUser} posts={posts} addLike={addLike} removeLike={removeLike} /></div>
-        </SimpleGrid>
+            <SimpleGrid cols={1} verticalSpacing="50">
+                <div><Header /></div>
+                <div style={{ margin: "0 35% 0 35%", maxWidth: 700 }}><AddPlaylist handleAddPost={handleAddPost} /></div>
+                <div style={{ margin: "0 35% 5% 35%", maxWidth: 700 }}><PlaylistFeed loggedInUser={loggedInUser} posts={posts} addLike={addLike} removeLike={removeLike} /></div>
+            </SimpleGrid>
         </>
         
     )

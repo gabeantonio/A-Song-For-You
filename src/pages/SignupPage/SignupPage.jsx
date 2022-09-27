@@ -98,10 +98,10 @@ export default function SignUpPage(props) {
     <div className={classes.wrapper}>
 
         <form onSubmit={handleSubmit}>
-        <Paper className={classes.form} radius={0} p={30}>
-        <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
-            Create An Account
-        </Title>
+
+          <Paper className={classes.form} radius={0} p={30}>
+
+            <Title order={2} className={classes.title} align="center" mt="md" mb={50}>Create An Account</Title>
 
             <TextInput name="username" placeholder="Username" value={state.username} onChange={handleChange} required label="Username" size="md" />
 
@@ -113,17 +113,16 @@ export default function SignUpPage(props) {
 
             <PasswordInput type="password" name="passwordConf" placeholder="Confirm Password" value={state.passwordConf} onChange={handleChange} required label="Password Confirmation" mt="md" size="md" error={error.message} />
 
-            <Button type="submit" fullWidth mt="xl" size="md">
-            Sign Up
-            </Button>
+            <Button type="submit" fullWidth mt="xl" size="md">Sign Up</Button>
 
-            <Text align="center" mt="md">
-            Already have an account?{' '}
+            <Text align="center" mt="md">Already have an account?{' '}
             <Link to="/login">Log In</Link>
             </Text>
 
-        </Paper>
+            </Paper>
+
         </form>
+        
     </div>
     
     );

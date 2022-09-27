@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
-// import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -50,21 +49,16 @@ const useStyles = createStyles((theme) => ({
 
 export default function LoginPage(props) {
 
+    const navigate = useNavigate();
     const { classes } = useStyles();
-
     const [error, setError] = useState("");
-    
     const [state, setState] = useState({
       email: "",
       password: "",
-    })
-
-
-    const navigate = useNavigate();
+    });
 
     async function handleSubmit(e) {
         e.preventDefault();
-        
         try {
           await userService.login(state);
           props.handleSignUpOrLogin();
@@ -87,28 +81,26 @@ export default function LoginPage(props) {
     <div className={classes.wrapper}>
 
         <form onSubmit={handleSubmit}>
-            {/* You can do onSubmit in the form tag! */}
-        <Paper className={classes.form} radius={0} p={30}>
+            
+          <Paper className={classes.form} radius={0} p={30}>
 
-        <Title order={2} className={classes.title} align="center" mt="md" mb={50}>
-            Welcome to your App!
-        </Title>
+            <Title order={2} className={classes.title} align="center" mt="md" mb={50}>Welcome to your App!</Title>
 
             <TextInput type="email" name="email" placeholder="hello@gmail.com" value={state.email} onChange={handleChange} label="Email Address"  size="md" />
 
             <PasswordInput type="password" name="password" placeholder="Your password" value={state.password} onChange={handleChange} label="Password" mt="md" size="md" />
 
-            <Button type="submit" fullWidth mt="xl" size="md">
-            Login
-            </Button>
+            <Button type="submit" fullWidth mt="xl" size="md">Login</Button>
 
             <Text align="center" mt="md">
             Don&apos;t have an account?{' '}
             <Link to="/signup">Register</Link>
             </Text>
 
-        </Paper>
+          </Paper>
+
         </form>
+        
     </div>
     );
 }

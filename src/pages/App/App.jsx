@@ -9,7 +9,9 @@ import userService from "../../utils/userService";
 import ProfilePage from  "../ProfilePage/ProfilePage";
 
 function App() {
-  const [user, setUser] = useState(userService.getUser()); 
+
+  const [user, setUser] = useState(userService.getUser());
+
   function handleSignUpOrLogin() {
     setUser(userService.getUser()); 
   }
@@ -22,38 +24,38 @@ function App() {
   if (user) {
     return (
       <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
-      <Routes>
-        <Route path="/" element={<Timeline loggedInUser={user} />} />
-        <Route
-          path="/login"
-          element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-        />
-        <Route
-          path="/signup"
-          element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-        />
-        <Route 
-          path="/:username"
-          element={<ProfilePage loggedInUser={user} /> }
-        />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Timeline loggedInUser={user} />} />
+          <Route
+            path="/login"
+            element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+          />
+          <Route
+            path="/signup"
+            element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+          />
+          <Route 
+            path="/:username"
+            element={<ProfilePage loggedInUser={user} /> }
+          />
+        </Routes>
       </MantineProvider>
     );
   }
 
   return (
-    <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
-    <Routes>
-      <Route
-        path="/login"
-        element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-      />
-      <Route
-        path="/signup"
-        element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
-      />
-      <Route path="/*" element={<Navigate to="/login" />} />
-    </Routes>
+      <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
+        <Routes>
+          <Route
+            path="/login"
+            element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+          />
+          <Route
+            path="/signup"
+            element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+          />
+          <Route path="/*" element={<Navigate to="/login" />} />
+        </Routes>
     </MantineProvider>
   );
 }

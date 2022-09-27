@@ -10,11 +10,10 @@ import { DEFAULT_THEME, LoadingOverlay } from '@mantine/core';
 
 export default function ProfilePage({loggedInUser}) {
 
-    const [posts, setPosts] = useState([]);
     const [profileUser, setProfileUser] = useState({});
+    const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('');
-
     const { username } = useParams();
 
     async function addLike(postId) {
@@ -38,6 +37,7 @@ export default function ProfilePage({loggedInUser}) {
         }
         }
 
+
         async function getProfile() {
             try {
                 const response = await userService.getProfile(username);
@@ -50,29 +50,31 @@ export default function ProfilePage({loggedInUser}) {
                 setError('Profile does not exist!')
             }
         }
-
-    useEffect(() => {
         
-        getProfile();
-    }, [username])
 
-    if(error){
-        return (
+        useEffect(() => {
+
+            getProfile()
+
+        }, [username])
+
+        if(error){
+            return (
             <>
-            <Header />
-            <ErrorMessage error={error} />
+                <Header />
+                <ErrorMessage error={error} />
             </>
-        )
-    }
+            )
+        }
 
-    const customLoader = (
-        <svg
+        const customLoader = (
+            <svg
             width="54"
             height="54"
             viewBox="0 0 38 38"
             xmlns="http://www.w3.org/2000/svg"
             stroke={DEFAULT_THEME.colors.blue[6]}
-        >
+            >
             <g fill="none" fillRule="evenodd">
             <g transform="translate(1 1)" strokeWidth="2">
                 <circle strokeOpacity=".5" cx="18" cy="18" r="18" />
@@ -91,25 +93,22 @@ export default function ProfilePage({loggedInUser}) {
         </svg>
         );
 
-    if (loading) {
-        return (
+        if (loading) {
+            return (
             <>
-            <Header />
-            <LoadingOverlay loader={customLoader} visible />
+                <Header />
+                <LoadingOverlay loader={customLoader} visible />
             </>
-        )
-    }
+            )
+        }
 
 
-
-
-
-    return (
+        return (
         <>
-        <SimpleGrid cols={1} spacing="50" verticalSpacing="50">
-            <div><Header /></div>
-            <div style={{ margin: "0 0 5% 25%", maxWidth: 700 }}><ProfileFeed loggedInUser={loggedInUser} posts={posts} addLike={addLike} removeLike={removeLike} /></div>
-        </SimpleGrid>
+            <SimpleGrid cols={1} spacing="50" verticalSpacing="50">
+                <div><Header /></div>
+                <div style={{ margin: "0 0 5% 25%", maxWidth: 700 }}><ProfileFeed loggedInUser={loggedInUser} posts={posts} addLike={addLike} removeLike={removeLike} /></div>
+            </SimpleGrid>
         </>
     )
 }
