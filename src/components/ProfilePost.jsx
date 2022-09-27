@@ -59,9 +59,10 @@ export default function ProfilePosts({post}) {
         <Modal
         opened={opened}
         centered
+        overlayOpacity={0.55}
+        overlayBlur={3}
         onClose={() => setOpened(false)}
         title={post.playlistName} 
-        overflow="inside"
         >
         {post.tracklist}
         </Modal>

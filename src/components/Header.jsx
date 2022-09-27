@@ -1,6 +1,7 @@
 import React from 'react';
-
-import { createStyles, Header, Container } from '@mantine/core';
+import { ActionIcon, useMantineColorScheme } from '@mantine/core';
+import { IconSun, IconMoonStars } from '@tabler/icons';
+import { createStyles, Header, Container, Text } from '@mantine/core';
 
 
 
@@ -28,7 +29,7 @@ export default function HeaderMenuColored() {
     return (
         <Header height={70} className={classes.header}>
         <Container>
-            This is the Header!
+        <Text size="xl">Medley In Love</Text>
         </Container>
     </Header>
     );

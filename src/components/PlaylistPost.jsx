@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { createStyles, Paper, Text, Title, Button, Modal, Group } from '@mantine/core';
+import { Link } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
 card: {
@@ -34,11 +35,13 @@ category: {
 
 
 export default function ArticleCardImage({post}) {
-    
+
     const { classes } = useStyles();
     const [opened, setOpened] = useState(false);
+    const profileUrl = `/${post.user.username}`;
 
     return (
+        <>
     <Paper
         shadow="md"
         p="xl"
@@ -48,12 +51,15 @@ export default function ArticleCardImage({post}) {
         >
         
         <div>
+        <Link to={profileUrl}>
         <Text className={classes.category} size="xs">
             {post.user.username}
         </Text>
+        </Link>
         <Title order={3} className={classes.title}>
             {post.playlistName}
         </Title>
+        
         </div>
 
         <Modal
@@ -70,5 +76,6 @@ export default function ArticleCardImage({post}) {
         <Button onClick={() => setOpened(true)}>View Tracklist</Button>
         </Group>
     </Paper>
+    </>
 );
 }

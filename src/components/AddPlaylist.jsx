@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
-import { FileInput, Textarea, TextInput, Button } from '@mantine/core';
+import { FileInput, Textarea, TextInput, Button, Modal, Group } from '@mantine/core';
+import { useNavigate } from "react-router-dom";
 
 export default function AddPlaylist({handleAddPost}) {
+
+const navigate = useNavigate()
 
 const [state, setState] = useState({
     playlistName: '',
@@ -25,6 +28,7 @@ function handleSubmit(e) {
         formData.append(key, state[key]);
     }
     handleAddPost(formData);
+    navigate('/');
 }
 
 function handleChange(e) {
@@ -34,59 +38,84 @@ function handleChange(e) {
     })
 }
 
+const [opened, setOpened] = useState(false); // For MODAL. 
 
     return(
-        
-    <form autoComplete="off" onSubmit={handleSubmit}>
+        <>
 
-        <TextInput
-            label="What is your Playlist called?"
-            className="form-one"
-            name="playlistName"
-            value={state.playlistName}
-            onChange={handleChange}
-            required
-            withAsterisk
-            placeholder="Playlist Title"
-        />
-
-        <br />
-
-        <FileInput
-            placeholder="Choose File"
-            className="form-control"
-            name="playlist-cover"
-            type="file"
-            onChange={handleFileInput}
-            label="Playlist Cover"
-            required
-            withAsterisk
-        />
-
-        <br />
-
-        <Textarea
-            className="form"
-            name="tracklist"
-            value={state.tracklist}
-            placeholder="Enter Tracklist"
-            onChange={handleChange}
-            label="Your Playlist's Tracklist:"
-            autosize
-            required
-            withAsterisk
-        />
-
-        <br/>
-
-        <Button
-            type="submit"
-            className='button'
+        <Modal
+            opened={opened}
+            onClose={() => setOpened(false)}
+            size="55%"
+            centered
+            title="Share a Playlist"
+            overlayOpacity={0.55}
+            overlayBlur={3}
         >
-            Post Playlist
-        </Button>
+        <form autoComplete="off" onSubmit={handleSubmit}>
 
-    </form>
+            <TextInput
+                label="What is your Playlist called?"
+                className="form-one"
+                name="playlistName"
+                value={state.playlistName}
+                onChange={handleChange}
+                required
+                withAsterisk
+                placeholder="Playlist Title"
+            />
+
+            <br />
+
+            <FileInput
+                placeholder="Choose File"
+                className="form-control"
+                name="playlist-cover"
+                type="file"
+                onChange={handleFileInput}
+                label="Playlist Cover"
+                required
+                withAsterisk
+            />
+
+            <br />
+
+            <Textarea
+                className="form"
+                name="tracklist"
+                value={state.tracklist}
+                placeholder="Enter Tracklist"
+                onChange={handleChange}
+                label="Your Playlist's Tracklist:"
+                autosize
+                required
+                withAsterisk
+            />
+
+            <br/>
+
+            <Button
+                type="submit"
+                className='button'
+            >
+            Post Playlist
+            </Button>
+
+            </form>
+
+
+        </Modal>
+
+        <Group position="center">
+            <Button onClick={() => setOpened(true)}>Share a New Playlist</Button>
+        </Group>
+
+
+
+
+
+
     
+    </>
     )
 }
