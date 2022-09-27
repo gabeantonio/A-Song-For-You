@@ -39,10 +39,14 @@ export default function ProfilePosts({post, loggedInUser, addLike, removeLike}) 
     const { classes } = useStyles();
     const [opened, setOpened] = useState(false);
     const likeCount = post.likes.length
-    const likedIndex = post.likes.findIndex(like => like.username === loggedInUser.username)
+    const likedIndex = post.likes.findIndex(
+        (like) => like.username === loggedInUser.username);
+    console.log(likedIndex, '<----- LIKED INDEX')
     const likeColor = likedIndex > -1 ? 'red' : 'grey'
-    const clickHandler = likedIndex > -1 ? () => removeLike(post.likes[likedIndex])._id : () => addLike(post._id)
-
+    const clickHandler =
+    likedIndex > -1
+        ? () => removeLike(post.likes[likedIndex]._id)  
+        : () => addLike(post._id);
 
     return (
     <Paper

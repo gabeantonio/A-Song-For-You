@@ -20,7 +20,8 @@ export default function ProfilePage({loggedInUser}) {
     async function addLike(postId) {
         try {
             const response = await likesAPI.create(postId);
-            console.log(response, '<--- THE RESPONSE FROM ADD LIKE!')
+            console.log(response, '<--- THE RESPONSE FROM ADD LIKE!');
+            getProfile();
         } catch(err) {
             console.log(err, '<--- THE ERROR FROM THE SERVER!')
         }
@@ -29,14 +30,14 @@ export default function ProfilePage({loggedInUser}) {
     async function removeLike(likeId) {
         try {
             const response = await likesAPI.removeLike(likeId);
-            console.log(response, '<--- RESPONSE FROM REMOVE LIKE!')
-        } catch(err) {
+            console.log(response, 'REMOVED LIKE');
+            getProfile();
+        } catch (err) {
             console.log(err);
+            setError("Error in removing like!");
         }
-    }
+        }
 
-
-    useEffect(() => {
         async function getProfile() {
             try {
                 const response = await userService.getProfile(username);
@@ -49,6 +50,9 @@ export default function ProfilePage({loggedInUser}) {
                 setError('Profile does not exist!')
             }
         }
+
+    useEffect(() => {
+        
         getProfile();
     }, [username])
 
