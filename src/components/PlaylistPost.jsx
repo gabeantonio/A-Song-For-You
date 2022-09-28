@@ -35,7 +35,7 @@ category: {
 
 
 
-export default function PlaylistPost({post, addLike, removeLike, loggedInUser }) {
+export default function PlaylistPost({post, addLike, removeLike, loggedInUser, deletePost }) {
 
     const { classes } = useStyles();
     const [opened, setOpened] = useState(false);
@@ -49,7 +49,10 @@ export default function PlaylistPost({post, addLike, removeLike, loggedInUser })
     likedIndex > -1
         ? () => removeLike(post.likes[likedIndex]._id)  
         : () => addLike(post._id);
-        
+    
+    console.log(post._id, '<----- POST ID HERE')
+    // const deleteThisPost = deletePost(post._id)
+
     return (
         <>
     <Paper

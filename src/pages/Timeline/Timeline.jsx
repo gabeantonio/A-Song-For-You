@@ -35,6 +35,15 @@ export default function Timeline({loggedInUser, logout}) {
         }
         }
 
+    async function handleDeletePost(postId) {
+        try {
+            const response = await postsAPI.deletePost(postId);
+            console.log(response, '<---- DELETED POST')
+        } catch(err) {
+            console.log(err);
+            setError("Error in deleting post!");
+        }
+    }
 
 
     async function handleAddPost(post) {
@@ -118,7 +127,7 @@ export default function Timeline({loggedInUser, logout}) {
             <SimpleGrid cols={1} verticalSpacing="50">
                 <div><Header loggedInUser={loggedInUser} logout={logout} /></div>
                 <div style={{ margin: "0 35% 0 35%", maxWidth: 700 }}><AddPlaylist handleAddPost={handleAddPost} /></div>
-                <div style={{ margin: "0 35% 5% 35%", maxWidth: 700 }}><PlaylistFeed loggedInUser={loggedInUser} posts={posts} addLike={addLike} removeLike={removeLike} /></div>
+                <div style={{ margin: "0 35% 5% 35%", maxWidth: 700 }}><PlaylistFeed loggedInUser={loggedInUser} posts={posts} addLike={addLike} removeLike={removeLike} deletePost={handleDeletePost} /></div>
             </SimpleGrid>
         </>
         

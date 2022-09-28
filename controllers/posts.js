@@ -1,4 +1,5 @@
 const Playlist = require("../models/playlist");
+const User = require('../models/user');
 const S3 = require("aws-sdk/clients/s3");
 const s3 = new S3(); 
 const { v4: uuidv4 } = require("uuid");
@@ -7,6 +8,7 @@ const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 module.exports = {
     create,
     index,
+    deletePost
 };
 
 function create(req, res) {
@@ -39,4 +41,16 @@ async function index(req, res) {
     } catch (err) {
     res.status(400).json({ err });
 }
+}
+
+async function deletePost(req, res){
+    try {
+        
+        const post = await Playlist.findOne({'post._id': req.params.id});
+        post.delete(req.params.id)
+        await post.save() 
+        res.json({data: 'Deleted'})
+    } catch(err){
+        res.status(400).json({error: err})
+    }
 }
