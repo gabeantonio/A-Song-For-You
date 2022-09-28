@@ -65,7 +65,7 @@ export default function PlaylistPost({post, addLike, removeLike, loggedInUser })
         <Text className={classes.category} size="xs">
             {post.user.username}
         </Text>
-        </Link>
+        </Link>        
         <Title order={3} className={classes.title}>
             {post.playlistName}
         </Title>
@@ -80,6 +80,13 @@ export default function PlaylistPost({post, addLike, removeLike, loggedInUser })
         overflow="inside"
         >
         {post.tracklist}
+
+        <div style={{margin: '0 0 0 65%'}}>
+        <Button color='red' size='xs'>
+            Delete Playlist
+        </Button>
+        </div>
+        
         </Modal>
 
         <div style={{margin: '70% 0 0 0' }}>
