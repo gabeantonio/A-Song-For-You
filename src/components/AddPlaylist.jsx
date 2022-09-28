@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { FileInput, Textarea, TextInput, Button, Modal, Group } from '@mantine/core';
 import { useNavigate } from "react-router-dom";
+import { IconSearch } from '@tabler/icons';
 
 export default function AddPlaylist({handleAddPost}) {
 
@@ -80,18 +81,17 @@ const [opened, setOpened] = useState(false); // For MODAL.
 
             <br />
 
-            <Textarea
-                className="form"
-                name="tracklist"
-                value={state.tracklist}
-                placeholder="Enter Tracklist"
+            <TextInput
+                label="What is your Playlist called?"
+                className="form-one"
+                name="playlistName"
+                value={state.playlistName}
                 onChange={handleChange}
-                label="Your Playlist's Tracklist:"
-                autosize
                 required
                 withAsterisk
+                placeholder="Playlist Title"
             />
-
+            
             <br/>
 
             <Button
@@ -109,12 +109,6 @@ const [opened, setOpened] = useState(false); // For MODAL.
         <Group position="center">
             <Button onClick={() => setOpened(true)}>Share a New Playlist</Button>
         </Group>
-
-
-
-
-
-
     
     </>
     )
