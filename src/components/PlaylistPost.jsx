@@ -82,7 +82,7 @@ export default function PlaylistPost({post, addLike, removeLike, loggedInUser })
         {post.tracklist}
         </Modal>
 
-        <div style={{margin: '80% 0 0 0' }}>
+        <div style={{margin: '70% 0 0 0' }}>
         <Group>
         <Button onClick={() => setOpened(true)}>View Tracklist</Button>
         </Group>

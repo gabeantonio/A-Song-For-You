@@ -83,7 +83,7 @@ export default function ProfilePosts({post, loggedInUser, addLike, removeLike}) 
         </Group>
         </div>
 
-        <div style={{margin: '-15% 0 0 90%'}}>
+        <div style={{margin: '-10% 0 0 90%'}}>
         <Indicator label={likeCount} overflowCount={10} inline size={15} >
         <ActionIcon>
             <IconHeart size={100} color={likeColor} stroke={1.5} onClick={clickHandler} />
