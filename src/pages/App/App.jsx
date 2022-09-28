@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { MantineProvider, Text } from '@mantine/core';
+import { Navigate, useNavigate, Route, Routes } from "react-router-dom";
+import { MantineProvider, AppShell, Navbar, Header } from '@mantine/core';
 import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";
@@ -9,6 +9,8 @@ import userService from "../../utils/userService";
 import ProfilePage from  "../ProfilePage/ProfilePage";
 
 function App() {
+
+  const navigate = useNavigate();
 
   const [user, setUser] = useState(userService.getUser());
 
@@ -19,13 +21,14 @@ function App() {
   function handleLogout() {
     userService.logout();
     setUser(null);
+    navigate('/login');
   }
 
   if (user) {
     return (
       <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
         <Routes>
-          <Route path="/" element={<Timeline loggedInUser={user} />} />
+          <Route path="/" element={<Timeline loggedInUser={user} logout={handleLogout} />} />
           <Route
             path="/login"
             element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
@@ -36,7 +39,7 @@ function App() {
           />
           <Route 
             path="/:username"
-            element={<ProfilePage loggedInUser={user} /> }
+            element={<ProfilePage loggedInUser={user} logout={handleLogout} /> }
           />
         </Routes>
       </MantineProvider>

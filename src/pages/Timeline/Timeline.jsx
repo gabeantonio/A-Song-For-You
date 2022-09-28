@@ -8,7 +8,7 @@ import { SimpleGrid } from '@mantine/core';
 import { DEFAULT_THEME, LoadingOverlay } from '@mantine/core';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
-export default function Timeline({loggedInUser}) {
+export default function Timeline({loggedInUser, logout}) {
 
     const [error, setError] = useState('');
     const [posts, setPosts] = useState([]);
@@ -116,7 +116,7 @@ export default function Timeline({loggedInUser}) {
 
         <>
             <SimpleGrid cols={1} verticalSpacing="50">
-                <div><Header /></div>
+                <div><Header loggedInUser={loggedInUser} logout={logout} /></div>
                 <div style={{ margin: "0 35% 0 35%", maxWidth: 700 }}><AddPlaylist handleAddPost={handleAddPost} /></div>
                 <div style={{ margin: "0 35% 5% 35%", maxWidth: 700 }}><PlaylistFeed loggedInUser={loggedInUser} posts={posts} addLike={addLike} removeLike={removeLike} /></div>
             </SimpleGrid>

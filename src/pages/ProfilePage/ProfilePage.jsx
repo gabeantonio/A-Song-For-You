@@ -8,7 +8,7 @@ import { SimpleGrid } from '@mantine/core';
 import { useParams } from 'react-router-dom';
 import { DEFAULT_THEME, LoadingOverlay } from '@mantine/core';
 
-export default function ProfilePage({loggedInUser}) {
+export default function ProfilePage({loggedInUser, logout}) {
 
     const [profileUser, setProfileUser] = useState({});
     const [posts, setPosts] = useState([]);
@@ -106,7 +106,7 @@ export default function ProfilePage({loggedInUser}) {
         return (
         <>
             <SimpleGrid cols={1} spacing="50" verticalSpacing="50">
-                <div><Header /></div>
+                <div><Header logout={logout} /></div>
                 <div style={{ margin: "0 0 5% 25%", maxWidth: 700 }}><ProfileFeed loggedInUser={loggedInUser} posts={posts} addLike={addLike} removeLike={removeLike} /></div>
             </SimpleGrid>
         </>
