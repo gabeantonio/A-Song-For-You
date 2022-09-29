@@ -47,7 +47,7 @@ function handleSubmit(e) {
         }
         
         axios.request(optionsTwo).then(function (response) {
-            console.log(response);
+            console.log(response, '<----SECOND RESPONSE');
         })
     
         
