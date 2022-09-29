@@ -1,18 +1,32 @@
-const axios = require("axios")
+import tokenService from "./tokenService";
 
-const options = {
-    method: 'GET',
-    url: 'https://genius.p.rapidapi.com/search',
-    params: {q: 'Beyonce'},
-    headers: {
-    'X-RapidAPI-Key': '355f8f5ff2msh84cc656855492b7p1b752cjsn934e4aa88371',
-    'X-RapidAPI-Host': 'genius.p.rapidapi.com'
-    }
-};
+const BASE_URL = '/song/';
 
-axios.request(options).then(function (response) {
-	console.log(response.data);
-}).catch(function (error) {
-	console.error(error);
-});
+export function getSong(songName) {
+    return fetch(BASE_URL + songName, {
+        method: 'GET',
+        headers: {
+        'Authorization': 'Bearer ' + tokenService.getToken() 
+        }
+    })
+    .then((res) => {
+        if(res.ok) return res.json();
 
+        return res.json().then(response => {
+        console.log(response)
+        throw new Error(response.err)
+        })
+    });
+}
+
+
+// function getProfile(username) {
+//     return fetch(BASE_URL + username, {
+//       headers: {
+//         'Authorization': 'Bearer ' + tokenService.getToken(),
+//     }
+//     }).then(res => {
+//       if(res.ok) return res.json();
+//       throw new Error('Error from getProfile request. Please check your server terminal.')
+//     })
+//   }
