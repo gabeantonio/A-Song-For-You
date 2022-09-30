@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { createStyles, Paper, Text, Title, Button, Modal, Group, ActionIcon, Indicator } from '@mantine/core';
+import { createStyles, Paper, Text, Title, Button, Modal, Group, ActionIcon, Indicator, SimpleGrid } from '@mantine/core';
 import { IconHeart } from '@tabler/icons';
 import { Link } from "react-router-dom";
 
@@ -55,6 +55,7 @@ export default function PlaylistPost({post, addLike, removeLike, loggedInUser, d
 
     return (
         <>
+        
     <Paper
         shadow="md"
         p="xl"
@@ -92,13 +93,9 @@ export default function PlaylistPost({post, addLike, removeLike, loggedInUser, d
         
         </Modal>
 
-        <div style={{margin: '70% 0 0 0' }}>
-        <Group>
-        <Button onClick={() => setOpened(true)}>View Tracklist</Button>
-        </Group>
-        </div>
-
-        <div style={{margin: '-15% 0 0 90%'}}>
+        
+        <SimpleGrid>
+        <div >
         <Group>
         <Indicator label={likeCount}  inline size={15} >
         <ActionIcon>
@@ -107,6 +104,14 @@ export default function PlaylistPost({post, addLike, removeLike, loggedInUser, d
         </Indicator>
         </Group>
         </div>
+
+
+        <div>
+        <Group>
+        <Button onClick={() => setOpened(true)}>View Tracklist</Button>
+        </Group>
+        </div>
+        </SimpleGrid>
 
     </Paper>
     </>

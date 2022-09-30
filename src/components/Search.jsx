@@ -3,13 +3,12 @@ import { FileInput, Textarea, TextInput, Button, Modal, Group, SimpleGrid, Text,
 import { useNavigate } from "react-router-dom";
 import Header from './Header';
 import * as geniusAPI from '../utils/geniusApi';
+import { IconExternalLink } from '@tabler/icons';
 
 
 export default function AddPlaylist({handleAddPost}) {
 
 const navigate = useNavigate()
-
-const RAPID_API_KEY = process.env.RAPID_API_KEY // NOT WORKING!
 
 const [state, setState] = useState({
     songName: '',
@@ -18,8 +17,9 @@ const [state, setState] = useState({
 // let queryString = {q: state.songName}
 
 // const axios = require("axios")
-const [title, setTitle] = useState('')
-const [songUrl, setSongUrl] = useState('')
+const [title, setTitle] = useState('');
+const [songUrl, setSongUrl] = useState('');
+const [lyricsUrl, setLyricsUrl] = useState('');
 // const options = {
 //     method: 'GET',
 //     url: 'https://genius.p.rapidapi.com/search',
@@ -62,8 +62,11 @@ async function handleSubmit(e) {
     console.log(response.data, '<--- RESPONSE DATA');
     setTitle(response.data.fullTitle)
     setSongUrl(response.data.songImage)
-
+    setLyricsUrl(response.data.lyricsUrl);
 }
+
+const geniusUrl = `${lyricsUrl}`;
+
 
 function handleChange(e) {
     setState({
@@ -94,7 +97,7 @@ function handleChange(e) {
             
             <br />
 
-            <div style={{margin: '0 35% 0 35%'}}>
+            <div>
             <Button
                 type="submit"
                 className='button'
@@ -106,6 +109,8 @@ function handleChange(e) {
 
             <br />
 
+            </form>
+
             <div style={{maxWidth: 600}}>    
             <Image
                 radius="md"
@@ -114,7 +119,13 @@ function handleChange(e) {
             />
             </div>
 
-            </form>
+            <br />
+
+            <div style={{margin: '0 30% 0 30%'}}>
+            <Button component="a" href={geniusUrl} variant="outline" leftIcon={<IconExternalLink size={14} />}>
+                Lyrics
+            </Button>
+            </div>
 
             </div>
             </SimpleGrid>

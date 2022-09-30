@@ -82,14 +82,14 @@ const [opened, setOpened] = useState(false); // For MODAL.
             <br />
 
             <TextInput
-                label="What is your Playlist called?"
-                className="form-one"
-                name="playlistName"
-                value={state.playlistName}
+                label="Tracklist"
+                className="form-two"
+                name="tracklist"
+                value={state.tracklist}
                 onChange={handleChange}
                 required
                 withAsterisk
-                placeholder="Playlist Title"
+                placeholder="Tracklist"
             />
             
             <br/>

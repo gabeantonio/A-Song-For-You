@@ -15,7 +15,7 @@ async function getSong(req,res) {
 
         const options = {
             method: 'GET',
-            url: 'https://genius.p.rapidapi.com/search',
+            url: 'https://genius-song-lyrics1.p.rapidapi.com/search',
             params: {q: `${songName}`},
             headers: {
                 'X-RapidAPI-Key': `${RAPID_API_KEY}`,
@@ -27,10 +27,12 @@ async function getSong(req,res) {
         const songData = response;
         const fullTitle = songData.data.response.hits[0].result.full_title;
         const songImage = songData.data.response.hits[0].result.song_art_image_url;
-        console.log(songData.data.response.hits[0].result, '<----- LOOK HERE');
+        const lyricsUrl = songData.data.response.hits[0].result.url;
+        console.log(songData.data.response.hits[0].result.url, '<----- LOOK HERE');
         res.status(200).json({data:{
             fullTitle: fullTitle,
-            songImage: songImage
+            songImage: songImage,
+            lyricsUrl: lyricsUrl
         }});
         // const optionsTwo = {
         //     method: 'GET',

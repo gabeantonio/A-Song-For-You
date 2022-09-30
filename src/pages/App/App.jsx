@@ -28,6 +28,7 @@ function App() {
   if (user) {
     return (
       <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
+        <div className="APP">
         <Routes>
           <Route path="/" element={<Timeline loggedInUser={user} logout={handleLogout} />} />
           <Route path="/search" element={<Search />} />
@@ -44,6 +45,7 @@ function App() {
             element={<ProfilePage loggedInUser={user} logout={handleLogout} /> }
           />
         </Routes>
+        </div>
       </MantineProvider>
     );
   }

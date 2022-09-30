@@ -19,14 +19,3 @@ export function getSong(songName) {
     });
 }
 
-
-// function getProfile(username) {
-//     return fetch(BASE_URL + username, {
-//       headers: {
-//         'Authorization': 'Bearer ' + tokenService.getToken(),
-//     }
-//     }).then(res => {
-//       if(res.ok) return res.json();
-//       throw new Error('Error from getProfile request. Please check your server terminal.')
-//     })
-//   }
