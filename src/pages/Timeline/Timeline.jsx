@@ -52,7 +52,7 @@ export default function Timeline({loggedInUser, logout}) {
             console.log('CREATING POST!')
             const response = await postsAPI.create(post);
             console.log(response);
-            setPosts([response.data, ...posts]);
+            setPosts([...posts, response.data]);
             
 
         } catch(err) {

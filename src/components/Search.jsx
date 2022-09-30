@@ -121,9 +121,9 @@ function handleChange(e) {
 
             <br />
 
-            <div style={{margin: '0 30% 0 30%'}}>
+            <div>
             <Button component="a" href={geniusUrl} variant="outline" leftIcon={<IconExternalLink size={14} />}>
-                Lyrics
+                Lyrics on Genius
             </Button>
             </div>
 
