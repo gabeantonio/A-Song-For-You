@@ -29,6 +29,7 @@ function handleSubmit(e) {
         formData.append(key, state[key]);
     }
     handleAddPost(formData);
+    setOpened(false);
     navigate('/');
 }
 
