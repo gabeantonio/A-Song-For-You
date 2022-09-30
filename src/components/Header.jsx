@@ -1,9 +1,8 @@
 import React from 'react';
 import { ActionIcon, useMantineColorScheme } from '@mantine/core';
 import { IconSun, IconMoonStars } from '@tabler/icons';
-import { createStyles, Header, Container, Text, Button } from '@mantine/core';
+import { createStyles, Header, Container, Text, Button, Menu } from '@mantine/core';
 import { Link, useNavigate } from "react-router-dom";
-// import { HomeSignal } from 'tabler-icons-react';
 
 
 const useStyles = createStyles((theme) => ({
@@ -21,8 +20,6 @@ inner: {
 
 }));
 
-
-
 export default function HeaderMenuColored({loggedInUser, logout}) {
     const { classes } = useStyles();
     const navigate = useNavigate();
@@ -37,12 +34,27 @@ export default function HeaderMenuColored({loggedInUser, logout}) {
         navigate('/')
     }
 
+    function toSearch() {
+        navigate('/search')
+    }
+
     return (
         <Header height={40} className={classes.header}>
             <nav>
                 <Button onClick={logout}>Logout</Button>
                 <Button onClick={toProfile}>Profile</Button>
                 <Button onClick={toHome}>Home</Button>
+                <Menu shadow="md" width={200}>
+                    <Menu.Target>
+                        <Button>Actions</Button>
+                    </Menu.Target>
+                    <Menu.Dropdown>
+                        <Menu.Label>Application</Menu.Label>
+                            <Menu.Item onClick={toSearch}>
+                                Song Search
+                            </Menu.Item>
+                    </Menu.Dropdown>
+                </Menu>
             </nav>
         </Header>
     );

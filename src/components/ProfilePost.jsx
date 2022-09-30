@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { createStyles, Paper, Text, Title, Button, Modal, Group, ActionIcon, Indicator } from '@mantine/core';
+import { createStyles, Paper, Text, Title, Button, Modal, Group, ActionIcon, Indicator, SimpleGrid } from '@mantine/core';
 import { IconHeart } from '@tabler/icons';
 
 const useStyles = createStyles((theme) => ({
@@ -77,19 +77,22 @@ export default function ProfilePosts({post, loggedInUser, addLike, removeLike}) 
         {post.tracklist}
         </Modal>
 
-        <div style={{margin: '95% 0 0 0' }}>
-        <Group>
-        <Button onClick={() => setOpened(true)}>View Tracklist</Button>
-        </Group>
-        </div>
-
-        <div style={{margin: '-10% 0 0 90%'}}>
+        <SimpleGrid>
+        <div style={{margin: '0 0 -30% 0'}}>
         <Indicator label={likeCount} overflowCount={10} inline size={15} >
         <ActionIcon>
             <IconHeart size={100} color={likeColor} stroke={1.5} onClick={clickHandler} />
         </ActionIcon>
         </Indicator>
         </div>
+
+        <div>
+        <Group>
+        <Button onClick={() => setOpened(true)}>View Tracklist</Button>
+        </Group>
+        </div>
+        </SimpleGrid>
+        
     </Paper>
 );
 }

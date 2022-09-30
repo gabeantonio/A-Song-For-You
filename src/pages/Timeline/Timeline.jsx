@@ -5,7 +5,7 @@ import PlaylistFeed from '../../components/PlaylistFeed';
 import * as postsAPI from '../../utils/postApi'; 
 import * as likesAPI from '../../utils/likesApi';
 import { SimpleGrid } from '@mantine/core';
-import { DEFAULT_THEME, LoadingOverlay } from '@mantine/core';
+import { DEFAULT_THEME, LoadingOverlay, MediaQuery } from '@mantine/core';
 import ErrorMessage from '../../components/ErrorMessage/ErrorMessage';
 
 export default function Timeline({loggedInUser, logout}) {
@@ -35,6 +35,15 @@ export default function Timeline({loggedInUser, logout}) {
         }
         }
 
+    async function handleDeletePost(postId) {
+        try {
+            const response = await postsAPI.deletePost(postId);
+            console.log(response, '<---- DELETED POST')
+        } catch(err) {
+            console.log(err);
+            setError("Error in deleting post!");
+        }
+    }
 
 
     async function handleAddPost(post) {
@@ -43,7 +52,7 @@ export default function Timeline({loggedInUser, logout}) {
             console.log('CREATING POST!')
             const response = await postsAPI.create(post);
             console.log(response);
-            setPosts([response.data, ...posts]);
+            setPosts([...posts, response.data]);
             
 
         } catch(err) {
@@ -118,7 +127,7 @@ export default function Timeline({loggedInUser, logout}) {
             <SimpleGrid cols={1} verticalSpacing="50">
                 <div><Header loggedInUser={loggedInUser} logout={logout} /></div>
                 <div style={{ margin: "0 35% 0 35%", maxWidth: 700 }}><AddPlaylist handleAddPost={handleAddPost} /></div>
-                <div style={{ margin: "0 35% 5% 35%", maxWidth: 700 }}><PlaylistFeed loggedInUser={loggedInUser} posts={posts} addLike={addLike} removeLike={removeLike} /></div>
+                <div style={{ margin: "0 5% 5% 25%", maxWidth: 800, minWidth: 300 }}><PlaylistFeed loggedInUser={loggedInUser} posts={posts} addLike={addLike} removeLike={removeLike} deletePost={handleDeletePost} /></div>
             </SimpleGrid>
         </>
         

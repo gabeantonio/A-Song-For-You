@@ -7,6 +7,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import Timeline from "../Timeline/Timeline";
 import userService from "../../utils/userService";
 import ProfilePage from  "../ProfilePage/ProfilePage";
+import Search from "../../components/Search";
 
 function App() {
 
@@ -27,8 +28,10 @@ function App() {
   if (user) {
     return (
       <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
+        <div className="APP">
         <Routes>
           <Route path="/" element={<Timeline loggedInUser={user} logout={handleLogout} />} />
+          <Route path="/search" element={<Search />} />
           <Route
             path="/login"
             element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
@@ -42,6 +45,7 @@ function App() {
             element={<ProfilePage loggedInUser={user} logout={handleLogout} /> }
           />
         </Routes>
+        </div>
       </MantineProvider>
     );
   }

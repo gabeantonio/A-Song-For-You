@@ -7,6 +7,6 @@ const upload = multer();
 
 router.post('/', upload.single('cover'), postsController.create);
 router.get('/', postsController.index);
-
+router.delete('/posts/:id', postsController.deletePost)
 
 module.exports = router;

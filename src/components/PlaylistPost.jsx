@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { createStyles, Paper, Text, Title, Button, Modal, Group, ActionIcon, Indicator } from '@mantine/core';
+import { createStyles, Paper, Text, Title, Button, Modal, Group, ActionIcon, Indicator, SimpleGrid } from '@mantine/core';
 import { IconHeart } from '@tabler/icons';
 import { Link } from "react-router-dom";
 
@@ -35,7 +35,7 @@ category: {
 
 
 
-export default function PlaylistPost({post, addLike, removeLike, loggedInUser }) {
+export default function PlaylistPost({post, addLike, removeLike, loggedInUser, deletePost }) {
 
     const { classes } = useStyles();
     const [opened, setOpened] = useState(false);
@@ -49,9 +49,13 @@ export default function PlaylistPost({post, addLike, removeLike, loggedInUser })
     likedIndex > -1
         ? () => removeLike(post.likes[likedIndex]._id)  
         : () => addLike(post._id);
-        
+    
+    console.log(post._id, '<----- POST ID HERE')
+    // const deleteThisPost = deletePost(post._id)
+
     return (
         <>
+        
     <Paper
         shadow="md"
         p="xl"
@@ -89,13 +93,9 @@ export default function PlaylistPost({post, addLike, removeLike, loggedInUser })
         
         </Modal>
 
-        <div style={{margin: '70% 0 0 0' }}>
-        <Group>
-        <Button onClick={() => setOpened(true)}>View Tracklist</Button>
-        </Group>
-        </div>
-
-        <div style={{margin: '-15% 0 0 90%'}}>
+        
+        <SimpleGrid>
+        <div >
         <Group>
         <Indicator label={likeCount}  inline size={15} >
         <ActionIcon>
@@ -104,6 +104,14 @@ export default function PlaylistPost({post, addLike, removeLike, loggedInUser })
         </Indicator>
         </Group>
         </div>
+
+
+        <div>
+        <Group>
+        <Button onClick={() => setOpened(true)}>View Tracklist</Button>
+        </Group>
+        </div>
+        </SimpleGrid>
 
     </Paper>
     </>
