@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.4",
-    "@mantine/carousel": "^5.4.0",
     "@mantine/core": "^5.4.0",
     "@mantine/dates": "^5.4.0",
     "@mantine/dropzone": "^5.4.0",
@@ -24,7 +23,6 @@
     "bcrypt": "^5.0.1",
     "dayjs": "^1.11.5",
     "dotenv": "^10.0.0",
-    "embla-carousel-react": "^7.0.3",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12",
