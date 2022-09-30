@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Header from './Header';
 import * as geniusAPI from '../utils/geniusApi';
 import { IconExternalLink } from '@tabler/icons';
+import userService from '../utils/userService';
 
 
 export default function AddPlaylist({handleAddPost}) {
@@ -67,6 +68,8 @@ async function handleSubmit(e) {
 
 const geniusUrl = `${lyricsUrl}`;
 
+const [user, setUser] = useState(userService.getUser());
+
 
 function handleChange(e) {
     setState({
@@ -75,11 +78,17 @@ function handleChange(e) {
     })
 }
 
+function handleLogout() {
+    userService.logout();
+    setUser(null);
+    navigate('/login');
+}
+
     return(
 
         <>
         <SimpleGrid col={3}>
-            <Header />
+            <Header logout={handleLogout}/>
         <div style={{margin: '5% 40% 0 40%'}}>
         <form autoComplete="off" onSubmit={handleSubmit}>
         
