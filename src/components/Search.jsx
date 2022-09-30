@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { FileInput, Textarea, TextInput, Button, Modal, Group, SimpleGrid, Text, Image } from '@mantine/core';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Header from './Header';
 import * as geniusAPI from '../utils/geniusApi';
 import { IconExternalLink } from '@tabler/icons';
