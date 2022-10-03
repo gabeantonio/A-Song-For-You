@@ -83,19 +83,12 @@ export default function PlaylistPost({post, addLike, removeLike, loggedInUser, d
         title={post.playlistName} 
         overflow="inside"
         >
-        {post.tracklist}
-
-        <div style={{margin: '0 0 0 65%'}}>
-        <Button color='red' size='xs'>
-            Delete Playlist
-        </Button>
-        </div>
-        
+        {post.tracklist}        
         </Modal>
 
         
         <SimpleGrid>
-        <div >
+        <div>
         <Group>
         <Indicator label={likeCount}  inline size={15} >
         <ActionIcon>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Navigate, useNavigate, Route, Routes } from "react-router-dom";
-import { MantineProvider, AppShell, Navbar, Header } from '@mantine/core';
+import { MantineProvider } from '@mantine/core';
 import "./App.css";
 import SignupPage from "../SignupPage/SignupPage";
 import LoginPage from "../LoginPage/LoginPage";

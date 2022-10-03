@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { FileInput, Textarea, TextInput, Button, Modal, Group } from '@mantine/core';
 import { useNavigate } from "react-router-dom";
-import { IconSearch } from '@tabler/icons';
 
 export default function AddPlaylist({handleAddPost}) {
 
@@ -29,6 +28,10 @@ function handleSubmit(e) {
         formData.append(key, state[key]);
     }
     handleAddPost(formData);
+    setState({
+        playlistName: '',
+        tracklist: ''
+    })
     setOpened(false);
     navigate('/');
 }
@@ -82,7 +85,7 @@ const [opened, setOpened] = useState(false); // For MODAL.
 
             <br />
 
-            <TextInput
+            <Textarea
                 label="Tracklist"
                 className="form-two"
                 name="tracklist"
@@ -90,6 +93,8 @@ const [opened, setOpened] = useState(false); // For MODAL.
                 onChange={handleChange}
                 required
                 withAsterisk
+                autosize
+                minRows={1}
                 placeholder="Tracklist"
             />
             

@@ -84,7 +84,7 @@ export default function LoginPage(props) {
             
           <Paper className={classes.form} radius={0} p={30}>
 
-            <Title order={2} className={classes.title} align="center" mt="md" mb={50}>Welcome to your App!</Title>
+            <Title order={2} className={classes.title} align="center" mt="md" mb={50}>Ready to share your music?</Title>
 
             <TextInput type="email" name="email" placeholder="hello@gmail.com" value={state.email} onChange={handleChange} label="Email Address"  size="md" />
 

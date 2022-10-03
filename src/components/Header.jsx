@@ -1,8 +1,6 @@
 import React from 'react';
-import { ActionIcon, useMantineColorScheme } from '@mantine/core';
-import { IconSun, IconMoonStars } from '@tabler/icons';
-import { createStyles, Header, Container, Text, Button, Menu } from '@mantine/core';
-import { Link, useNavigate } from "react-router-dom";
+import { createStyles, Header, Button, Menu } from '@mantine/core';
+import { useNavigate } from "react-router-dom";
 
 
 const useStyles = createStyles((theme) => ({

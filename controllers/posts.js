@@ -1,5 +1,4 @@
 const Playlist = require("../models/playlist");
-const User = require('../models/user');
 const S3 = require("aws-sdk/clients/s3");
 const s3 = new S3(); 
 const { v4: uuidv4 } = require("uuid");

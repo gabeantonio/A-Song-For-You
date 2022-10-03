@@ -34,21 +34,6 @@ async function getSong(req,res) {
             songImage: songImage,
             lyricsUrl: lyricsUrl
         }});
-        // const optionsTwo = {
-        //     method: 'GET',
-        //     url: `https://genius.p.rapidapi.com/songs/${response.data.response.hits[0].result.id}`,
-        //     headers: {
-        //     'X-RapidAPI-Key': `${RAPID_API_KEY}`,
-        //     'X-RapidAPI-Host': `${RAPID_API_HOST}`
-        //     }
-        // }
-        
-        // axios.request(optionsTwo).then(function (response) {
-        //     console.log(response, '<----SECOND RESPONSE');
-        //     console.log(response.data.response.song.media[1].url, '<---- SECOND RESPONSE DATA')
-        //     const videoLink = response.data.response.song.media[1].url;
-        //     res.status(200).json({data:{videoLink: videoLink}});
-        // })
     })
 
 
@@ -57,27 +42,3 @@ async function getSong(req,res) {
         res.status(400).json({error: 'Something went wrong in the SONG Controller!'});
     }
 }
-
-
-
-//     axios.request(options).then(function (response) {
-
-//     console.log(response);
-
-//     const optionsTwo = {
-//         method: 'GET',
-//         url: `https://genius.p.rapidapi.com/songs/${response.data.response.hits[0].result.id}`,
-//         headers: {
-//         'X-RapidAPI-Key': '355f8f5ff2msh84cc656855492b7p1b752cjsn934e4aa88371',
-//         'X-RapidAPI-Host': 'genius.p.rapidapi.com'
-//         }
-//     }
-    
-//     axios.request(optionsTwo).then(function (response) {
-//         console.log(response, '<----SECOND RESPONSE');
-//     })
-
-    
-// }).catch(function (error) {
-//     console.error(error);
-// });
