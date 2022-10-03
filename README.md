@@ -45,7 +45,7 @@ Here, you can search for a song that has piqued your interest by typing in the s
 
 ## Getting Started 
 
-Ready to share your taste in music? Here's [A Song For You](https://mysterious-eyrie-19712.herokuapp.com/login)
+Ready to share your taste in music? Here's [A Song For You](https://mysterious-eyrie-19712.herokuapp.com/login).
 
 
 ## Technologies Used
