@@ -16,7 +16,6 @@ function create(req, res) {
     const params = {Bucket: BUCKET_NAME, Key: key, Body: req.file.buffer};
 
     s3.upload(params, async function(err, data) {
-        console.log(err, '<-- AWS ERROR!!!!!')
         if(err) return res.status(400).json({err: 'Check your terminal.'})
 
         try {

@@ -25,7 +25,6 @@ async function profile(req, res) {
     }});
 
   } catch(err) {
-    console.log(err.message, '<---- ERROR IN PROFILE CONTROLLER');
     res.status(400).json({error: 'Something went wrong in the Profile Controller!'});
   }
 }
@@ -37,11 +36,9 @@ async function signup(req, res) {
     try {
       await user.save();
       const token = createJWT(user);
-      res.json({ token }); // shorthand for the below:
-      // res.json({ token: token })
+      res.json({ token });
     } catch (err) {
       if (err.name === "MongoServerError" && err.code === 11000) {
-        console.log(err.message, "err.message");
         res
           .status(423)
           .json({
@@ -80,11 +77,9 @@ async function login(req, res) {
 }
 
 
-/*----- Helper Functions -----*/
-
 function createJWT(user) {
   return jwt.sign(
-    {user}, // data payload
+    {user},
     SECRET,
     {expiresIn: '24h'}
   );
