@@ -16,7 +16,6 @@ const [selectedCover, setSelectedCover] = useState('');
 
 function handleFileInput(e) {
     setSelectedCover(e)
-    console.log(e);
 }
 
 function handleSubmit(e) {

@@ -4,7 +4,6 @@ const postsController = require('../../controllers/posts')
 const multer = require('multer');
 const upload = multer();
 
-
 router.post('/', upload.single('cover'), postsController.create);
 router.get('/', postsController.index);
 router.delete('/posts/:id', postsController.deletePost)

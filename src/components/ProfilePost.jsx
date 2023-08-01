@@ -31,9 +31,6 @@ category: {
 },
 }));
 
-
-
-
 export default function ProfilePosts({post, loggedInUser, addLike, removeLike}) {
     
     const { classes } = useStyles();
@@ -41,7 +38,6 @@ export default function ProfilePosts({post, loggedInUser, addLike, removeLike}) 
     const likeCount = post.likes.length
     const likedIndex = post.likes.findIndex(
         (like) => like.username === loggedInUser.username);
-    console.log(likedIndex, '<----- LIKED INDEX')
     const likeColor = likedIndex > -1 ? 'red' : 'grey'
     const clickHandler =
     likedIndex > -1

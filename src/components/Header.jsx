@@ -22,7 +22,6 @@ export default function HeaderMenuColored({loggedInUser, logout}) {
     const { classes } = useStyles();
     const navigate = useNavigate();
 
-
     function toProfile() {
         const profileUrl = `/${loggedInUser.username}`;
         navigate(`${profileUrl}`)

@@ -17,41 +17,32 @@ export default function Timeline({loggedInUser, logout}) {
     async function addLike(postId) {
         try {
             const response = await likesAPI.create(postId);
-            console.log(response, '<--- THE RESPONSE FROM ADD LIKE!');
             getPosts();
         } catch(err) {
-            console.log(err, '<--- THE ERROR FROM THE SERVER!')
         }
     }
 
     async function removeLike(likeId) {
         try {
             const response = await likesAPI.removeLike(likeId);
-            console.log(response, 'REMOVED LIKE');
             getPosts();
         } catch (err) {
             console.log(err);
-            setError("Error in removing like!");
         }
         }
 
     async function handleDeletePost(postId) {
         try {
             const response = await postsAPI.deletePost(postId);
-            console.log(response, '<---- DELETED POST')
         } catch(err) {
-            console.log(err);
             setError("Error in deleting post!");
         }
     }
 
 
     async function handleAddPost(post) {
-    
         try {
-            console.log('CREATING POST!')
             const response = await postsAPI.create(post);
-            console.log(response);
             setPosts([...posts, response.data]);
             
 
@@ -63,11 +54,9 @@ export default function Timeline({loggedInUser, logout}) {
     async function getPosts() {
         try {
             const response = await postsAPI.getAll();
-            console.log(response, '<--- RESPONSE DATA');
             setPosts([...response.data]);
             setLoading(false);
         } catch(err) {
-            console.log(err.message, "<--- ERROR in USE EFFECT");
             setLoading(false);
         }
     }

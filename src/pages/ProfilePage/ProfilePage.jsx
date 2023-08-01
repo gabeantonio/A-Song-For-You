@@ -19,20 +19,16 @@ export default function ProfilePage({loggedInUser, logout}) {
     async function addLike(postId) {
         try {
             const response = await likesAPI.create(postId);
-            console.log(response, '<--- THE RESPONSE FROM ADD LIKE!');
             getProfile();
         } catch(err) {
-            console.log(err, '<--- THE ERROR FROM THE SERVER!')
         }
     }
 
     async function removeLike(likeId) {
         try {
             const response = await likesAPI.removeLike(likeId);
-            console.log(response, 'REMOVED LIKE');
             getProfile();
         } catch (err) {
-            console.log(err);
             setError("Error in removing like!");
         }
         }
@@ -44,9 +40,7 @@ export default function ProfilePage({loggedInUser, logout}) {
                 setLoading(false)
                 setProfileUser(response.data.user);
                 setPosts(response.data.posts);
-                console.log(response, '<--- OUR DATA')
             } catch(err) {
-                console.log(err.message);
                 setError('Profile does not exist!')
             }
         }

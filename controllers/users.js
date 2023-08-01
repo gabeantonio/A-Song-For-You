@@ -1,10 +1,6 @@
 const User = require('../models/user');
 const Playlist = require('../models/playlist');
 const jwt = require('jsonwebtoken');
-// const S3 = require("aws-sdk/clients/s3");
-// const s3 = new S3();
-// const { v4: uuidv4 } = require("uuid");
-// const BUCKET_NAME = process.env.AWS_BUCKET_NAME;
 const SECRET = process.env.SECRET;
 
 module.exports = {
@@ -15,7 +11,6 @@ module.exports = {
 
 async function profile(req, res) {
   try {
-
     const user = await User.findOne({username: req.params.username});
     if (!user) return res.status(404).json({error: 'User not found.'});
     const posts = await Playlist.find({user: user._id}).populate('user').exec();
@@ -23,15 +18,13 @@ async function profile(req, res) {
       user: user,
       posts: posts
     }});
-
   } catch(err) {
-    res.status(400).json({error: 'Something went wrong in the Profile Controller!'});
+    res.status(400).json({error: 'Check Profile Controller.'});
   }
 }
 
 
 async function signup(req, res) {
-  console.log(req.body, " req.body in signup");
   const user = new User({ ...req.body});
     try {
       await user.save();
@@ -59,11 +52,8 @@ async function signup(req, res) {
 async function login(req, res) {
   try {
     const user = await User.findOne({email: req.body.email});
-    console.log(user, ' this user in login')
     if (!user) return res.status(401).json({err: 'bad credentials'});
-    // had to update the password from req.body.pw, to req.body password
-    user.comparePassword(req.body.password, (err, isMatch) => {
-        
+    user.comparePassword(req.body.password, (err, isMatch) => {    
       if (isMatch) {
         const token = createJWT(user);
         res.json({token});

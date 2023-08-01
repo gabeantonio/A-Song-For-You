@@ -81,7 +81,6 @@ export default function SignUpPage(props) {
           props.handleSignUpOrLogin();
           navigate('/')
       } catch(err) {
-        console.log(err.message);
         setError(err.message);
       }
     }

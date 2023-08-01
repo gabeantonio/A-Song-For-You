@@ -12,7 +12,6 @@ const playlistSchema = new mongoose.Schema({
     playlistName: String,
     tracklist: String,
     likes: [likesSchema]
-
 })
 
 module.exports = mongoose.model('Playlist', playlistSchema);

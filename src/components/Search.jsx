@@ -22,7 +22,6 @@ const geniusUrl = `${lyricsUrl}`;
 async function handleSubmit(e) {
     e.preventDefault();
     const response = await geniusAPI.getSong(state.songName);
-    console.log(response.data, '<--- RESPONSE DATA');
     setTitle(response.data.fullTitle)
     setSongUrl(response.data.songImage)
     setLyricsUrl(response.data.lyricsUrl);
@@ -42,7 +41,6 @@ function handleLogout() {
 }
 
     return(
-
         <>
         <SimpleGrid col={3}>
             <Header logout={handleLogout}/>

@@ -12,7 +12,6 @@ const RAPID_API_HOST = process.env.RAPID_API_HOST;
 async function getSong(req,res) {
     try {
         const songName = req.params.songName
-
         const options = {
             method: 'GET',
             url: 'https://genius-song-lyrics1.p.rapidapi.com/search',
@@ -22,7 +21,6 @@ async function getSong(req,res) {
                 'X-RapidAPI-Host': `${RAPID_API_HOST}`
             }
         };
-        
     axios.request(options).then(function (response, body) {
         const songData = response;
         const fullTitle = songData.data.response.hits[0].result.full_title;
@@ -34,7 +32,6 @@ async function getSong(req,res) {
             lyricsUrl: lyricsUrl
         }});
     })
-
 
     } catch(err) {
         res.status(400).json({error: 'Something went wrong in the SONG Controller!'});

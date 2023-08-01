@@ -10,7 +10,6 @@ import ProfilePage from  "../ProfilePage/ProfilePage";
 import Search from "../../components/Search";
 
 function App() {
-
   const navigate = useNavigate();
 
   const [user, setUser] = useState(userService.getUser());
