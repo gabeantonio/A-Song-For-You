@@ -1,6 +1,6 @@
 # A Song For You
 
-Welcome to the newest way to share your music! A Song For You is a platform where you can share playlists of your own curation with friends!
+Welcome to the newest way to share your music! A Song For You is a platform where you can share playlists of your own curation with friends! It is a full-stack MERN application.
 
 ## App Overview
 
